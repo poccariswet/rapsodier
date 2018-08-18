@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  mysql:
+    image: 'mysql:5.7.22'
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_USER: todos_user
+      MYSQL_PASSWORD: todos_pass
+      MYSQL_DATABASE: todos_db
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/mysql
+
+#TODO add application services
+
+volumes:
+  db-data:
