@@ -11,6 +11,7 @@ services:
       MYSQL_DATABASE: todos_db
       MYSQL_ROOT_PASSWORD: password
     volumes:
+      - "./conf/mysql:/docker-entrypoint-initdb.d"
       - db-data:/var/lib/mysql
 
 #TODO add application services
