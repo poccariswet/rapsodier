@@ -1,11 +1,16 @@
 package main
 
-import "github.com/jinzhu/gorm"
+import (
+	"time"
+
+	"github.com/jinzhu/gorm"
+)
 
 type Task struct {
-	Id   int    `gorm"id"`
-	Text string `gorm:"text"`
-	Done bool   `gorm:"done"`
+	Id        int       `gorm"id"`
+	Text      string    `gorm:"text"`
+	Done      bool      `gorm:"done"`
+	CreatedAt time.Time `gorm:"created_at"`
 }
 
 func NewRepository(db *gorm.DB) *Repository {
