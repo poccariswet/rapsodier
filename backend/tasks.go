@@ -10,6 +10,7 @@ type Task struct {
 	Id        int       `gorm"id"`
 	Text      string    `gorm:"text"`
 	Done      bool      `gorm:"done"`
+	Location  string    `gorm:"location"`
 	CreatedAt time.Time `gorm:"created_at"`
 }
 
