@@ -45,44 +45,32 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   data () {
     return {
       todo: '',
-      todos: [
-        {
-          id: 0,
-          text: "sample text",
-          done: false,
-          location: "todo",
-          created_at: "2018-01-01"
-        }
-      ]
+      todos: []
     }
   },
   methods: {
     addTodo () {
-//      const obj = {
-//        text: this.todo
-//      }
-//      const method = 'POST'
-//      const body = JSON.stringify(obj)
-//      const headers = {
-//                'Content-Type': 'application/json',
-//            };
-//      fetch("localhost:9999/tasks", {
-//          method,
-//          headers,
-//          body
-//      }).then((res) => res.json()).then((res) => {
-//        console.log(res)
-//      }).catch((err) => {
-//        console.log(err)
-//      });
-
+      const obj = {
+        text: this.todo
+      }
+      this.$store.dispatch('todos/addTodo', obj)
       this.todo = ''
-    }
-  }
+    },
+    ...mapMutations({
+      update: 'todos/update'
+    })
+  },
+  mounted () {
+    this.$store.dispatch('todos/getTodos')
+    this.todos = this.$store.state.todos.todos
+  },
+
 }
 
 </script>
