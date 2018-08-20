@@ -21,7 +21,7 @@ var (
 )
 
 func DBconnect() (*gorm.DB, error) {
-	connection := fmt.Sprintf("%s:%s@/%s?charset=utf8&parseTime=True&loc=Local", user, pass, dbname)
+	connection := fmt.Sprintf("%s:%s@tcp(mysql:3306)/%s?charset=utf8&parseTime=True&loc=Local", user, pass, dbname)
 	db, err := gorm.Open("mysql", connection)
 	if err != nil {
 		return nil, err
