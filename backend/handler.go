@@ -8,6 +8,9 @@ import (
 )
 
 func ListTasks(c *gin.Context) {
+	// cors header
+	c.Header("Access-Control-Allow-Origin", "*")
+
 	repo, err := NewConfig()
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"config error": err})
@@ -23,6 +26,8 @@ func ListTasks(c *gin.Context) {
 }
 
 func NewTask(c *gin.Context) {
+	c.Header("Access-Control-Allow-Origin", "*")
+
 	repo, err := NewConfig()
 	if err != nil {
 		log.Println("config err: ", err)
@@ -42,6 +47,8 @@ func NewTask(c *gin.Context) {
 }
 
 func UpdateTask(c *gin.Context) {
+	c.Header("Access-Control-Allow-Origin", "*")
+
 	repo, err := NewConfig()
 	if err != nil {
 		log.Println("config err: ", err)
