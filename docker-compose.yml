@@ -1,6 +1,19 @@
 version: '3.3'
 
 services:
+  #TODO add application services
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    networks:
+      - database
+    ports:
+      - "9999:9999"
+
+  #frontend PORT 8888
+
+
   mysql:
     image: 'mysql:5.7.22'
     ports:
@@ -10,11 +23,16 @@ services:
       MYSQL_PASSWORD: todos_pass
       MYSQL_DATABASE: todos_db
       MYSQL_ROOT_PASSWORD: password
+    networks:
+      - database
     volumes:
       - "./conf/mysql:/docker-entrypoint-initdb.d"
       - db-data:/var/lib/mysql
 
-#TODO add application services
 
 volumes:
   db-data:
+
+networks:
+  database:
+
