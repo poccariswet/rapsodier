@@ -11,9 +11,9 @@
       <section class="todo-list">
         <h2> Todo </h2>
         <section class="order-list">
-          <div v-for="t in todos" :key="t.id" class="item">
-            <div v-if="t.location === 'todo'">
-              {{t.text}}
+          <div v-for="t in todos" :key="t.Id" class="item">
+            <div v-if="t.Location === 'todo'">
+              {{t.Text}}
             </div>
           </div>
         </section>
@@ -22,9 +22,9 @@
       <section class="progress-list">
         <h2> Progress </h2>
         <section class="order-list">
-          <div v-for="t in todos" :key="t.id" class="item">
-            <div v-if="t.location === 'progress'">
-              {{t.text}}
+          <div v-for="t in todos" :key="t.Id" class="item">
+            <div v-if="t.Location === 'progress'">
+              {{t.Text}}
             </div>
           </div>
         </section>
@@ -33,8 +33,8 @@
       <section class="done-list">
         <h2> Done </h2>
         <section class="order-list">
-          <div v-for="t in todos" :key="t.id" class="item">
-            <div v-if="t.location === 'done'">
+          <div v-for="t in todos" :key="t.Id" class="item">
+            <div v-if="t.Location === 'done'">
               {{t.text}}
             </div>
           </div>
@@ -51,8 +51,10 @@ export default {
   data () {
     return {
       todo: '',
-      todos: []
     }
+  },
+  computed: {
+    todos () { return this.$store.state.todos.todos }
   },
   methods: {
     addTodo () {
@@ -68,7 +70,6 @@ export default {
   },
   mounted () {
     this.$store.dispatch('todos/getTodos')
-    this.todos = this.$store.state.todos.todos
   },
 
 }

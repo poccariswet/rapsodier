@@ -2,7 +2,7 @@ export const state = () => ({
   todos: []
 })
 
-export const mutations = () => ({
+export const mutations = {
 
   setTodos(state, todos) {
     state.todos = todos
@@ -22,7 +22,7 @@ export const mutations = () => ({
     todo.done = !todo.done
   }
 
-})
+}
 
 export const actions = {
   getTodos({commit}) {
