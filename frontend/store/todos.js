@@ -10,11 +10,11 @@ export const mutations = {
 
   add(state, text) {
     state.todos.push({
-      id: state.list.length + 1,
-      text: text,
-      done: false,
-      location: 'todo',
-      created_at: Date.now()
+      Id: state.todos.length + 1,
+      Text: text,
+      Done: false,
+      Location: 'todo',
+      Created_at: Date.now()
     })
   },
 
@@ -40,9 +40,10 @@ export const actions = {
     }).catch(console.error)
   },
 
-  addTodo({commit}, obj) {
+  addTodo({commit}, text_todo) {
+    const obj = { text: text_todo }
     const method = 'POST'
-    const body = JSON.stringify(obj)
+    const body = JSON.stringify(obj);
     const headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -52,8 +53,7 @@ export const actions = {
         method,
         headers,
         body
-    }).then((res) => res.json()).then((res) => {
-      console.log(res)
+    }).then((res) => {
       commit('add', obj.text)
     }).catch((err) => {
       console.log(err)

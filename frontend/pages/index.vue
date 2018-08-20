@@ -58,10 +58,7 @@ export default {
   },
   methods: {
     addTodo () {
-      const obj = {
-        text: this.todo
-      }
-      this.$store.dispatch('todos/addTodo', obj)
+      this.$store.dispatch('todos/addTodo', this.todo)
       this.todo = ''
     },
     ...mapMutations({
