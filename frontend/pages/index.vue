@@ -12,9 +12,11 @@
         <h2> Todo </h2>
         <section class="order-list">
           <div v-for="t in todos" :key="t.Id" class="item">
-            <div v-if="t.Location === 'todo'">
-              {{t.Text}}
-            </div>
+            <ul v-if="t.Location === 'todo'">
+              <draggable>
+                <li>{{t.Text}}</li>
+              </draggable>
+            </ul>
           </div>
         </section>
       </section>
@@ -23,9 +25,9 @@
         <h2> Progress </h2>
         <section class="order-list">
           <div v-for="t in todos" :key="t.Id" class="item">
-            <div v-if="t.Location === 'progress'">
-              {{t.Text}}
-            </div>
+            <ul v-if="t.Location === 'progress'">
+              <li>{{t.Text}}</li>
+            </ul>
           </div>
         </section>
       </section>
@@ -34,9 +36,9 @@
         <h2> Done </h2>
         <section class="order-list">
           <div v-for="t in todos" :key="t.Id" class="item">
-            <div v-if="t.Location === 'done'">
-              {{t.text}}
-            </div>
+            <ul v-if="t.Location === 'done'">
+              <li>{{t.Text}}</li>
+            </ul>
           </div>
         </section>
       </section>
@@ -45,7 +47,8 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations } from 'vuex'
+import draggable from 'vuedraggable'
 
 export default {
   data () {
@@ -68,6 +71,9 @@ export default {
   mounted () {
     this.$store.dispatch('todos/getTodos')
   },
+  components: {
+    draggable,
+  }
 
 }
 
