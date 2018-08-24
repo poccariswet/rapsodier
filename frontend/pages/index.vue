@@ -13,7 +13,7 @@
         <section class="order-list">
           <div v-for="t in todos" :key="t.Id" class="item">
             <ul v-if="t.Location === 'todo'">
-              <draggable>
+              <draggable :options="{ group: 'todos' }">
                 <li>{{t.Text}}</li>
               </draggable>
             </ul>
@@ -26,7 +26,9 @@
         <section class="order-list">
           <div v-for="t in todos" :key="t.Id" class="item">
             <ul v-if="t.Location === 'progress'">
-              <li>{{t.Text}}</li>
+              <draggable :options="{ group: 'todos' }">
+                <li>{{t.Text}}</li>
+              </draggable>
             </ul>
           </div>
         </section>
@@ -37,7 +39,9 @@
         <section class="order-list">
           <div v-for="t in todos" :key="t.Id" class="item">
             <ul v-if="t.Location === 'done'">
-              <li>{{t.Text}}</li>
+              <draggable :options="{ group: 'todos' }">
+                <li>{{t.Text}}</li>
+              </draggable>
             </ul>
           </div>
         </section>
