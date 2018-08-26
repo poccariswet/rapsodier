@@ -1,17 +1,27 @@
 version: '3.3'
 
 services:
-  #TODO add application services
   api:
     build:
       context: ./backend
       dockerfile: Dockerfile
     networks:
       - database
+      - apiserver
     ports:
       - "9999:9999"
 
-  #frontend PORT 8888
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    networks:
+      - apiserver
+    volumes:
+      - .:/app/frontend
+      - /app/frontend/node_modules
 
 
   mysql:
@@ -35,4 +45,5 @@ volumes:
 
 networks:
   database:
+  apiserver:
 
