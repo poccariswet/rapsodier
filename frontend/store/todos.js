@@ -1,15 +1,50 @@
 export const state = () => ({
-  todos: []
+  tasks: {
+    todos: [],
+    progresses: [],
+    dones: []
+  }
 })
 
 export const mutations = {
 
-  setTodos(state, todos) {
-    state.todos = todos
+  setTodos(state, res) {
+    for(let v of res) {
+      switch(v.Location) {
+        case 'todo':
+          state.tasks.todos.push(v)
+          break
+        case 'progress':
+          state.tasks.progresses.push(v)
+          break
+        case 'done':
+          state.tasks.dones.push(v)
+          break
+      }
+    }
+    if(state.tasks.todos.length == 0) {
+      state.tasks.todos.push({
+        Id: 0,
+        Text: '',
+        Location: 'todo'
+      })
+    } else if(state.tasks.progresses.length == 0) {
+      state.tasks.progresses.push({
+        Id: 0,
+        Text: '',
+        Location: 'progress'
+      })
+    } else if(state.tasks.dones.length == 0) {
+      state.tasks.dones.push({
+        Id: 0,
+        Text: '',
+        Location: 'done'
+      })
+    }
   },
 
   add(state, text) {
-    state.todos.push({
+    state.tasks.todos.push({
       Id: state.todos.length + 1,
       Text: text,
       Done: false,

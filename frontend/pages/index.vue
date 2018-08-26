@@ -11,39 +11,33 @@
       <section class="todo-list">
         <h2> Todo </h2>
         <section class="order-list">
-          <div v-for="t in todos" :key="t.Id" class="item">
-            <ul v-if="t.Location === 'todo'">
-              <draggable :options="{ group: 'todos' }">
-                <li>{{t.Text}}</li>
-              </draggable>
-            </ul>
-          </div>
+          <draggable element="ul" :options="{ group: 'tasks' }">
+            <div v-for="t in tasks.todos" :key="t.Id" class="item">
+              <li v-if="t.Location === 'todo'">{{t.Text}}</li>
+            </div>
+          </draggable>
         </section>
       </section>
 
       <section class="progress-list">
         <h2> Progress </h2>
         <section class="order-list">
-          <div v-for="t in todos" :key="t.Id" class="item">
-            <ul v-if="t.Location === 'progress'">
-              <draggable :options="{ group: 'todos' }">
-                <li>{{t.Text}}</li>
-              </draggable>
-            </ul>
-          </div>
+          <draggable element="ul" :options="{ group: 'tasks' }">
+            <div v-for="t in tasks.progresses" :key="t.Id" class="item">
+              <li v-if="t.Location === 'progress'">{{t.Text}}</li>
+            </div>
+          </draggable>
         </section>
       </section>
 
       <section class="done-list">
         <h2> Done </h2>
         <section class="order-list">
-          <div v-for="t in todos" :key="t.Id" class="item">
-            <ul v-if="t.Location === 'done'">
-              <draggable :options="{ group: 'todos' }">
-                <li>{{t.Text}}</li>
-              </draggable>
-            </ul>
-          </div>
+          <draggable element="ul" :options="{ group: 'tasks' }">
+            <div v-for="t in tasks.dones" :key="t.Id" class="item">
+              <li v-if="t.Location === 'done'">{{t.Text}}</li>
+            </div>
+          </draggable>
         </section>
       </section>
     </div>
@@ -61,7 +55,7 @@ export default {
     }
   },
   computed: {
-    todos () { return this.$store.state.todos.todos }
+    tasks () { return this.$store.state.todos.tasks }
   },
   methods: {
     addTodo () {
