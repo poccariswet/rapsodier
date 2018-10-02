@@ -1,2 +1,4 @@
 backend/backend
+backend/vendor/
 asset/.DS_Store
+
